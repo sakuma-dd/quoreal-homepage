@@ -1,0 +1,499 @@
+/* ==========================================================
+   QUOREAL OPENING CSS
+========================================================== */
+
+
+#opening{
+
+    position:fixed;
+
+    inset:0;
+
+    width:100%;
+
+    height:100vh;
+
+    background:#000;
+
+    overflow:hidden;
+
+    z-index:999999;
+
+}
+
+.opening-bg{
+
+    position:absolute;
+
+    inset:0;
+
+    background:#000;
+
+}
+
+
+
+
+
+/* SCENE */
+
+.door-scene{
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:520px;
+    height:600px;
+
+    transform:translate(-50%,-50%);
+
+    perspective:1200px;
+
+}
+
+
+
+
+/* GOLD LINE */
+
+.gold-line{
+
+    position:absolute;
+
+    left:50%;
+
+    top:50%;
+
+    width:2px;
+
+    height:0;
+
+    transform:translate(-50%,-50%);
+
+
+    background:linear-gradient(
+        to bottom,
+        transparent,
+        #d8b45a,
+        #fff0b0,
+        #d8b45a,
+        transparent
+    );
+
+
+    box-shadow:0 0 20px rgba(255,220,120,.8);
+
+    transition:
+
+    height 1.5s ease,
+    opacity .8s ease;
+
+
+    z-index:20;
+
+}
+
+
+#opening.line .gold-line{
+
+    height:520px;
+
+}
+
+
+
+#opening.door-show .gold-line{
+
+    opacity:0;
+
+}
+
+
+
+
+
+/* DOOR */
+
+.door{
+
+    position:absolute;
+
+    top:50%;
+
+    width:260px;
+
+    height:520px;
+
+
+    opacity:0;
+
+
+    transform-style:preserve-3d;
+
+    backface-visibility:hidden;
+
+
+    transition:
+
+    opacity 1s ease,
+    transform 3.5s cubic-bezier(.16,1,.3,1);
+
+}
+
+
+
+.door img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:fill;
+
+}
+
+
+
+.door-left{
+
+    left:0;
+
+    transform-origin:0% 50%;
+
+    transform:
+
+    translateY(-50%)
+    rotateY(0deg);
+
+}
+
+
+
+.door-right{
+
+    right:0;
+
+    transform-origin:100% 50%;
+
+    transform:
+
+    translateY(-50%)
+    rotateY(0deg);
+
+}
+
+
+
+#opening.door-show .door{
+
+    opacity:1;
+
+}
+
+
+
+#opening.open .door-left{
+
+    transform:
+
+    translateY(-50%)
+    rotateY(-75deg);
+
+}
+
+
+
+#opening.open .door-right{
+
+    transform:
+
+    translateY(-50%)
+    rotateY(75deg);
+
+}
+
+
+
+
+
+/* LIGHT */
+
+.inner-light{
+
+    position:absolute;
+
+    inset:-80%;
+
+
+    background:
+
+    radial-gradient(
+        ellipse at center,
+        #fff 0%,
+        rgba(255,250,220,.9) 35%,
+        transparent 70%
+    );
+
+
+    opacity:0;
+
+    filter:blur(60px);
+
+    z-index:15;
+
+
+    transition:opacity 1.5s ease;
+
+}
+
+
+
+#opening.open .inner-light{
+
+    opacity:1;
+
+}
+
+
+
+
+
+/* WHITE */
+
+.whiteout{
+
+    position:absolute;
+
+    inset:0;
+
+    background:#fff;
+
+
+    opacity:0;
+
+
+    z-index:50;
+
+
+    transition:opacity 1.5s ease;
+
+}
+
+
+
+#opening.flash .whiteout{
+
+    opacity:1;
+
+}
+
+
+
+
+
+/* LOGO */
+
+.opening-logo{
+
+    position:absolute;
+
+    inset:0;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:#fff;
+
+    opacity:0;
+
+    transform:translateY(0);
+
+    z-index:100;
+
+    transition:
+        opacity .45s ease,
+        transform .45s cubic-bezier(.22,.61,.36,1);
+
+}
+
+
+
+.opening-logo img{
+
+    width:min(720px,68vw);
+
+    max-width:none;
+
+}
+
+
+
+#opening.logo .opening-logo{
+
+    opacity:1;
+
+}
+/* =====================================================
+   OPENING WHITE HOLD FIX
+===================================================== */
+
+
+/* ロゴ表示中も黒背景を出さない */
+
+#opening.logo{
+
+    background:#fff !important;
+
+}
+
+
+/* flash解除後も白を維持 */
+
+#opening.logo .whiteout{
+
+    opacity:1 !important;
+
+    background:#fff !important;
+
+}
+
+
+/* ロゴ背景を確実に白 */
+
+#opening.logo .opening-logo{
+
+    background:#fff !important;
+
+    opacity:1 !important;
+
+}
+.opening-scroll{
+
+    position:absolute;
+
+    left:50%;
+
+    bottom:clamp(50px,6vh,80px);
+
+    transform:translateX(-50%);
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:16px;
+
+    z-index:200;
+
+    opacity:0;
+
+    transition:opacity .6s ease;
+
+}
+
+.opening-scroll.show{
+
+    opacity:1;
+
+}
+
+.opening-scroll span{
+
+    font-size:12px;
+
+    letter-spacing:.4em;
+
+    color:#777;
+
+}
+
+.scroll-line{
+
+    width:2.5px;
+
+    height:110px;
+
+    background:#cfcfcf;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.scroll-line::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    top:-100%;
+
+    width:100%;
+
+    height:100%;
+
+    background:linear-gradient(
+        to bottom,
+        transparent,
+        #C6A76A,
+        transparent
+    );
+
+    animation:scrollLine 2s infinite;
+
+}
+
+@keyframes scrollLine{
+
+    from{
+        top:-110%;
+    }
+
+    to{
+        top:110%;
+    }
+
+}
+#opening{
+    transition:
+        transform .9s ease,
+        filter .9s ease,
+        opacity .9s ease;
+}
+
+.opening-scroll{
+    transition:
+        opacity .45s ease,
+        transform .45s ease,
+        filter .45s ease;
+}
+
+.opening-scroll.leave{
+    opacity: 0;
+    transform: translate(-50%, 20px);
+    filter: blur(6px);
+}
+.opening-logo.leave{
+
+    opacity:0;
+
+    transform:translateY(-50px);
+
+    filter:blur(10px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s cubic-bezier(.22,.61,.36,1),
+        filter .8s ease;
+
+}
